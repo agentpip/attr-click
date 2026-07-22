@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Models;
+
+use Database\Factories\LinkFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+#[Fillable(['user_id', 'slug', 'destination_url', 'stored_query', 'is_active'])]
+class Link extends Model
+{
+    /** @use HasFactory<LinkFactory> */
+    use HasFactory;
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function clickEvents(): HasMany
+    {
+        return $this->hasMany(ClickEvent::class);
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    public function canonicalUrl(): string
+    {
+        return url('/'.$this->slug).($this->stored_query ? '?'.$this->stored_query : '');
+    }
+}
