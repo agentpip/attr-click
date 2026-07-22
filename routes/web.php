@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\QrTemplateController;
 use App\Http\Controllers\RedirectController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,8 @@ Route::get('/invite/verify/{user}/{invitation}', [InvitationController::class, '
 Route::middleware('auth')->group(function (): void {
     Route::get('/dashboard', [LinkController::class, 'index'])->name('dashboard');
     Route::get('/links/create', [LinkController::class, 'create'])->name('links.create');
+    Route::get('/templates', [QrTemplateController::class, 'index'])->name('templates.index');
+    Route::post('/templates', [QrTemplateController::class, 'store'])->name('templates.store');
     Route::post('/links', [LinkController::class, 'store'])->name('links.store');
     Route::get('/links/{link:slug}', [LinkController::class, 'show'])->name('links.show');
 });

@@ -18,8 +18,19 @@ class QrCodeService
             errorCorrectionLevel: ErrorCorrectionLevel::High,
             size: 1024,
             margin: 24,
-            foregroundColor: new Color(17, 24, 39),
-            backgroundColor: new Color(255, 255, 255),
+            foregroundColor: $this->color($link->qr_foreground_color),
+            backgroundColor: $this->color($link->qr_background_color, '#ffffff'),
         ))->build()->getString();
+    }
+
+    private function color(?string $hex, string $fallback = '#111827'): Color
+    {
+        $hex ??= $fallback;
+
+        return new Color(
+            hexdec(substr($hex, 1, 2)),
+            hexdec(substr($hex, 3, 2)),
+            hexdec(substr($hex, 5, 2)),
+        );
     }
 }

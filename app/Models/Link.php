@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['user_id', 'slug', 'destination_url', 'stored_query', 'is_active'])]
+#[Fillable(['user_id', 'qr_template_id', 'slug', 'destination_url', 'stored_query', 'qr_foreground_color', 'qr_background_color', 'is_active'])]
 class Link extends Model
 {
     /** @use HasFactory<LinkFactory> */

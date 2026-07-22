@@ -22,6 +22,11 @@ class User extends Authenticatable
         return $this->hasMany(Link::class);
     }
 
+    public function qrTemplates(): HasMany
+    {
+        return $this->hasMany(QrTemplate::class);
+    }
+
     protected function casts(): array
     {
         return [

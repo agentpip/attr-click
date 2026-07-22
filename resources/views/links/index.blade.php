@@ -1,6 +1,6 @@
 <x-layout>
     <div class="flex items-end justify-between gap-6">
-        <div><p class="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">Your links</p><h1 class="mt-2 text-4xl font-black">Small URLs. Big signal.</h1></div>
+        <div><p class="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">Your links</p><h1 class="mt-2 text-4xl font-black">Small URLs. Big signal.</h1><a href="{{ route('templates.index') }}" class="mt-3 inline-block text-sm font-semibold text-cyan-300 hover:text-cyan-200">Manage QR templates</a></div>
         <a href="{{ route('links.create') }}" class="rounded-xl bg-cyan-400 px-4 py-3 font-bold text-slate-950">Create link</a>
     </div>
     <div class="mt-10 overflow-hidden rounded-2xl border border-slate-800">
