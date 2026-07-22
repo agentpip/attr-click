@@ -36,6 +36,17 @@ class LinkPlatformTest extends TestCase
         $this->get($verificationUrl)->assertStatus(403);
     }
 
+    public function test_an_existing_verified_invitee_can_start_a_session(): void
+    {
+        Invitation::factory()->create(['code' => 'RETURNING-ATTR']);
+        User::factory()->create(['email' => 'returning@example.com', 'email_verified_at' => now()]);
+
+        $this->post(route('invite.register'), ['email' => 'returning@example.com', 'code' => 'RETURNING-ATTR'])
+            ->assertRedirect(route('dashboard'));
+
+        $this->assertAuthenticated();
+    }
+
     public function test_creator_can_create_a_short_link_that_preserves_source_parameters(): void
     {
         $creator = User::factory()->create(['email_verified_at' => now()]);
