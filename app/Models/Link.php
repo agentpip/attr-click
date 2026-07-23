@@ -9,11 +9,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['user_id', 'qr_template_id', 'slug', 'destination_url', 'stored_query', 'qr_foreground_color', 'qr_background_color', 'is_active'])]
+#[Fillable(['user_id', 'qr_template_id', 'slug', 'destination_url', 'stored_query', 'qr_foreground_color', 'qr_background_color', 'qr_logo_path', 'qr_regenerated_at', 'is_active'])]
 class Link extends Model
 {
     /** @use HasFactory<LinkFactory> */
     use HasFactory;
+
+    protected function casts(): array
+    {
+        return ['qr_regenerated_at' => 'datetime'];
+    }
 
     public function user(): BelongsTo
     {
@@ -32,6 +37,6 @@ class Link extends Model
 
     public function canonicalUrl(): string
     {
-        return url('/'.$this->slug).($this->stored_query ? '?'.$this->stored_query : '');
+        return url('/'.$this->slug);
     }
 }

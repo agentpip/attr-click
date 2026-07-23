@@ -34,6 +34,30 @@ php artisan flux:activate you@example.com YOUR_FLUX_LICENSE_KEY
 
 The activation credential belongs in the deployment/CI secret store, never in git or `.env.example`.
 
+## Production deployment
+
+Production intentionally does not install frontend development dependencies. Envoy builds Vite assets locally on the machine invoking deployment, uploads those assets before the application source, refreshes Composer dependencies and Laravel caches, restarts the user service, and checks `/up`.
+
+For a normal release, run one command:
+
+```bash
+vendor/bin/envoy run deploy
+```
+
+For the QR lifecycle release, use the dedicated one-command recipe. It performs the same deployment flow and then reissues every QR from its query-free canonical short URL:
+
+```bash
+vendor/bin/envoy run deploy_qr_lifecycle
+```
+
+List the available Envoy recipes with:
+
+```bash
+vendor/bin/envoy tasks
+```
+
+The target is `michael@umacbookpro:/home/michael/Sites/attr.click`. The workflow preserves remote `.env` and `storage/`; production secrets and user-generated files are never copied from the local checkout. Note that Envoy 2.12's `--pretend` mode intentionally prints one task then exits nonzero, so use it only for inspecting an individual task—not as a successful full-story dry run.
+
 ## Project docs
 
 - [Product requirements](docs/PRD.md)
