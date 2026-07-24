@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invitation;
 use App\Models\User;
+use App\Services\PasswordlessDeliveryGuard;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class InvitationController extends Controller
         return view('auth.invite');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, PasswordlessDeliveryGuard $delivery): RedirectResponse
     {
         $data = $request->validate([
             'email' => ['required', 'email:rfc', 'max:255'],
@@ -45,6 +46,8 @@ class InvitationController extends Controller
             return redirect()->route('dashboard');
         }
 
+        $delivery->ensureReady();
+
         $nonce = Str::random(64);
         $user->forceFill(['verification_nonce' => hash('sha256', $nonce)])->save();
         $verificationUrl = URL::temporarySignedRoute('invite.verify', now()->addMinutes(30), [
@@ -57,7 +60,7 @@ class InvitationController extends Controller
             $message->to($user->email)->subject('Verify your attr.click email');
         });
 
-        return back()->with('status', 'Check your email for a verification link.')->with('verification_url', $verificationUrl);
+        return back()->with('status', 'Check your email for a verification link.');
     }
 
     public function verify(Request $request, User $user, Invitation $invitation): RedirectResponse

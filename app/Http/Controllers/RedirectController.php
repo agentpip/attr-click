@@ -9,17 +9,27 @@ use Illuminate\Http\Request;
 
 class RedirectController extends Controller
 {
+    private const ATTRIBUTION_KEYS = [
+        'utm_source',
+        'utm_medium',
+        'utm_campaign',
+        'utm_content',
+        'utm_term',
+    ];
+
+    private const MAX_ATTRIBUTION_VALUE_LENGTH = 120;
+
     public function __invoke(Request $request, Link $link): RedirectResponse
     {
         abort_unless($link->is_active, 410);
 
+        $query = $this->mergeQuery($link->stored_query, $request->getQueryString());
+
         ClickEvent::query()->create([
             'link_id' => $link->id,
             'referrer_host' => parse_url((string) $request->headers->get('referer'), PHP_URL_HOST),
-            'attribution' => $this->safeAttribution($request->getQueryString()),
+            'attribution' => $this->safeAttribution($query),
         ]);
-
-        $query = $this->mergeQuery($link->stored_query, $request->getQueryString());
 
         return redirect()->away($link->destination_url.($query ? '?'.$query : ''), 302);
     }
@@ -69,10 +79,9 @@ class RedirectController extends Controller
 
     private function safeAttribution(?string $query): array
     {
-        $sensitive = '/(token|code|password|secret|key|signature)/i';
-
         return collect($this->pairs($query))
-            ->reject(fn (array $pair) => preg_match($sensitive, $pair[0]) === 1)
+            ->filter(fn (array $pair) => in_array($pair[0], self::ATTRIBUTION_KEYS, true))
+            ->filter(fn (array $pair) => mb_strlen($pair[1]) <= self::MAX_ATTRIBUTION_VALUE_LENGTH)
             ->mapWithKeys(fn (array $pair) => [$pair[0] => $pair[1]])
             ->all();
     }
