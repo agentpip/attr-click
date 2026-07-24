@@ -4,14 +4,13 @@
 
 - Laravel 13 / Livewire / Flux / Endroid QR foundation, local SQLite and documented production MySQL path.
 - Invitation-only verification, passwordless login, owner-scoped link and QR management, stable query-forwarding redirect contract, first-party click/UTM reporting, QR palettes/templates/private logos, QR lifecycle reissue flow, and a Laravel-native admin slice for global stats, creator role management, and invitation operations.
-- Deployed `https://attr.click` behind Caddy with an Envoy asset-first deployment workflow and `/up` health probe.
-- Local QA on 2026-07-23: 41 tests / 173 assertions passed; Pint passed; Vite build passed; local invite verification completed through Mailpit before admin promotion; `composer audit --locked` and `npm audit --omit=dev --audit-level=high` reported no known advisories.
+- Deployed `https://attr.click` behind Caddy with an Envoy asset-first deployment workflow and `/up` health probe. Release `ce6a944` was deployed from `origin/main` only on 2026-07-24; the build, asset/application sync, Composer production install, migrations, cache optimization, and loopback health completed successfully.
+- Local QA on 2026-07-24: 42 tests / 179 assertions passed; Pint passed; Vite build passed; local invite verification completed through Mailpit before admin promotion. Production canaries confirmed HTTPS Vite assets, browser-security headers, `/login` 200, and guest redirects for `/dashboard` and `/admin` without creating production data.
 
-## Current release gate — deploy and canary security remediation
+## Current release gate — completed application deploy; Apache cutover remains
 
-- Source remediation is complete and locally tested: centralized public-target admission, UTM-only bounded analytics, no auth-link flash storage, production log-mailer refusal, and browser-security middleware.
-- Preserve the working production SMTP transport, deploy the reviewable source slice, and run non-mutating live header plus unauthenticated dashboard redirect canaries. Confirm the prior live HTTP 500 is absent before promotion.
-- Re-run source, dependency, and live external-surface canaries after deployment; only then run `links:regenerate-qr` in production.
+- Source remediation is complete and deployed: centralized public-target admission, UTM-only bounded analytics, no auth-link flash storage, production log-mailer refusal, and browser-security middleware.
+- Preserve the working production SMTP transport. The non-mutating live header and guest redirect canaries passed after deployment; do not run `links:regenerate-qr` until the Apache cutover is complete and healthy.
 
 ## Current infrastructure gate — replace the development server
 
