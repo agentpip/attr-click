@@ -1,9 +1,39 @@
+@props([
+    'title' => 'attr.click',
+    'description' => null,
+    'canonical' => null,
+    'socialImage' => null,
+])
+
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? 'attr.click' }}</title>
+    <title>{{ $title }}</title>
+    @if ($description)
+        <meta name="description" content="{{ $description }}">
+    @endif
+    @if ($canonical)
+        <link rel="canonical" href="{{ $canonical }}">
+        <meta property="og:locale" content="en_US">
+        <meta property="og:site_name" content="attr.click">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ $canonical }}">
+        <meta property="og:title" content="{{ $title }}">
+        <meta property="og:description" content="{{ $description }}">
+        <meta property="og:image" content="{{ $socialImage }}">
+        <meta property="og:image:secure_url" content="{{ $socialImage }}">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="attr.click — Open-source short links and QR codes">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ $title }}">
+        <meta name="twitter:description" content="{{ $description }}">
+        <meta name="twitter:image" content="{{ $socialImage }}">
+        <meta name="twitter:image:alt" content="attr.click — Open-source short links and QR codes">
+    @endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @fluxAppearance
 </head>

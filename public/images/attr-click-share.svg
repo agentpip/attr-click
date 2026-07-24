@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">attr.click — Open-source short links and QR codes</title>
+  <desc id="description">A dark social-share card with cyan accents for the attr.click open-source short-link and QR-code platform.</desc>
+  <rect width="1200" height="630" fill="#09090b"/>
+  <rect x="42" y="42" width="1116" height="546" rx="28" fill="#18181b" stroke="#3f3f46" stroke-width="2"/>
+  <g fill="#22d3ee" opacity=".16">
+    <circle cx="988" cy="126" r="190"/>
+    <circle cx="1082" cy="440" r="125"/>
+  </g>
+  <g fill="none" stroke="#22d3ee" stroke-width="10" stroke-linecap="round">
+    <path d="M944 196h46v46m20 0h46v46m-112 20h46v46m20 0h46v46"/>
+    <path d="M1066 196h46v46m-122 168h46v46m20 0h46v46"/>
+  </g>
+  <text x="118" y="164" fill="#67e8f9" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="5">OPEN-SOURCE SHORT LINKS + QR CODES</text>
+  <text x="118" y="304" fill="#fafafa" font-family="Arial, Helvetica, sans-serif" font-size="94" font-weight="800" letter-spacing="-4">attr<tspan fill="#22d3ee">.</tspan>click</text>
+  <text x="118" y="380" fill="#d4d4d8" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="400">Link intelligence, without the bloat.</text>
+  <line x1="118" y1="465" x2="776" y2="465" stroke="#3f3f46" stroke-width="2"/>
+  <text x="118" y="522" fill="#a1a1aa" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600">MIT LICENSED  •  OPEN SOURCE</text>
+  <text x="118" y="558" fill="#71717a" font-family="Arial, Helvetica, sans-serif" font-size="17">Built with Agency Agents</text>
+</svg>
