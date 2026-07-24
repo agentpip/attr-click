@@ -4,8 +4,10 @@
 
 - Laravel 13 / Livewire / Flux / Endroid QR foundation, local SQLite and documented production MySQL path.
 - Invitation-only verification, passwordless login, owner-scoped link and QR management, stable query-forwarding redirect contract, first-party click/UTM reporting, QR palettes/templates/private logos, QR lifecycle reissue flow, and a Laravel-native admin slice for global stats, creator role management, and invitation operations.
+- Creator-owned deletion: a detail-page danger zone requires the exact short slug before permanently deleting the short link, dynamic QR resolution, private QR logo, and cascade-owned scan analytics. Deletion is owner-only; former public slugs return `404`.
 - Deployed `https://attr.click` behind Caddy with an Envoy asset-first deployment workflow and `/up` health probe. Release `ce6a944` was deployed from `origin/main` only on 2026-07-24; the build, asset/application sync, Composer production install, migrations, cache optimization, and loopback health completed successfully.
 - Local QA on 2026-07-24: 42 tests / 179 assertions passed; Pint passed; Vite build passed; local invite verification completed through Mailpit before admin promotion. Production canaries confirmed HTTPS Vite assets, browser-security headers, `/login` 200, and guest redirects for `/dashboard` and `/admin` without creating production data.
+- Local deletion-slice QA on 2026-07-24: 46 tests / 199 assertions passed; Pint and Vite build passed. A real local magic-login browser flow confirmed the rendered deletion controls, dashboard redirect after deletion, and `404` for the deleted public slug.
 
 ## Current release gate — completed application deploy; Apache cutover remains
 
