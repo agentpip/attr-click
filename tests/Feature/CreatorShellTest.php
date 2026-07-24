@@ -20,6 +20,7 @@ class CreatorShellTest extends TestCase
             ->assertSee('data-flux-sidebar', false)
             ->assertSee('data-flux-button', false)
             ->assertSee('Preferred color scheme')
-            ->assertSee('Create link');
+            ->assertSee('Create link')
+            ->assertSee('Log out');
     }
 }

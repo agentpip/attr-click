@@ -22,6 +22,11 @@
                     <flux:navlist.item :href="route('admin.dashboard')" icon="lock-closed" :current="request()->routeIs('admin.*')">Admin</flux:navlist.item>
                 @endcan
             </flux:navlist>
+
+            <form method="POST" action="{{ route('logout') }}" class="mt-auto">
+                @csrf
+                <flux:button type="submit" variant="ghost" class="w-full justify-start">Log out</flux:button>
+            </form>
         </flux:sidebar>
 
         <flux:main class="bg-white dark:bg-zinc-950">

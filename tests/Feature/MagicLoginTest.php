@@ -44,6 +44,18 @@ class MagicLoginTest extends TestCase
         $this->get(route('dashboard'))->assertRedirect(route('login'));
     }
 
+    public function test_authenticated_user_can_log_out(): void
+    {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+
+        $this->actingAs($user)
+            ->post(route('logout'))
+            ->assertRedirect(route('home'));
+
+        $this->assertGuest();
+        $this->get(route('dashboard'))->assertRedirect(route('login'));
+    }
+
     public function test_production_does_not_issue_a_magic_link_through_the_log_mailer(): void
     {
         $user = User::factory()->create(['email_verified_at' => now()]);

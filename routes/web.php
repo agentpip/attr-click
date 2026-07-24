@@ -23,6 +23,7 @@ Route::post('/invite', [InvitationController::class, 'store'])->middleware('thro
 Route::get('/invite/verify/{user}/{invitation}', [InvitationController::class, 'verify'])->middleware('signed')->name('invite.verify');
 
 Route::middleware('auth')->group(function (): void {
+    Route::post('/logout', [MagicLoginController::class, 'destroy'])->name('logout');
     Route::get('/dashboard', [LinkController::class, 'index'])->name('dashboard');
     Route::get('/links/create', [LinkController::class, 'create'])->name('links.create');
     Route::get('/templates', [QrTemplateController::class, 'index'])->name('templates.index');
