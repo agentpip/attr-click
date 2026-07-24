@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function (): void {
     Route::post('/templates', [QrTemplateController::class, 'store'])->name('templates.store');
     Route::post('/links', [LinkController::class, 'store'])->name('links.store');
     Route::put('/links/{link:slug}', [LinkController::class, 'update'])->name('links.update');
+    Route::delete('/links/{link:slug}', [LinkController::class, 'destroy'])->name('links.destroy');
     Route::post('/links/{link:slug}/qr/regenerate', [QrRegenerationController::class, 'store'])->name('links.qr-regenerate');
     Route::get('/links/{link:slug}/analytics', [LinkAnalyticsController::class, 'show'])->name('links.analytics');
     Route::get('/links/{link:slug}/qr.png', [QrExportController::class, 'png'])->name('links.qr-png');

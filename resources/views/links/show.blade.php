@@ -48,4 +48,21 @@
             <div class="min-h-48"><canvas data-referrer-chart aria-label="Top referrer hosts" role="img"></canvas></div>
         </div>
     </section>
+    <section class="mt-12 rounded-2xl border border-rose-300 bg-rose-50 p-6 shadow-sm dark:border-rose-400/30 dark:bg-rose-400/5">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700 dark:text-rose-300">Danger zone</p>
+        <h2 class="mt-2 text-2xl font-bold">Delete this short link</h2>
+        <p class="mt-3 max-w-2xl text-sm leading-6 text-zinc-700 dark:text-zinc-300">This permanently deletes the short URL, its live QR code, private logo, and scan analytics. Existing QR scans will no longer resolve.</p>
+
+        <form method="POST" action="{{ route('links.destroy', $link) }}" class="mt-6 flex max-w-xl flex-col gap-4 sm:flex-row sm:items-end">
+            @csrf
+            @method('DELETE')
+
+            <label class="block flex-1 text-sm font-semibold">Type {{ $link->slug }} to confirm
+                <input name="confirm_slug" type="text" required autocomplete="off" class="mt-2 w-full rounded-xl border border-rose-300 bg-white px-3 py-3 text-zinc-950 outline-none ring-rose-500 focus:ring-2 dark:border-rose-400/40 dark:bg-zinc-950 dark:text-white">
+                @error('confirm_slug') <span class="mt-1 block text-sm text-rose-700 dark:text-rose-300">{{ $message }}</span> @enderror
+            </label>
+
+            <button type="submit" class="rounded-xl bg-rose-700 px-4 py-3 text-sm font-bold text-white hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-950">Delete short link and QR</button>
+        </form>
+    </section>
 </x-layout>

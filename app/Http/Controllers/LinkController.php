@@ -7,6 +7,7 @@ use App\Services\DestinationUrlPolicy;
 use App\Services\UtmAnalyticsService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
@@ -82,6 +83,24 @@ class LinkController extends Controller
         ]);
 
         return redirect()->route('links.show', $link)->with('status', 'Destination updated. Your short URL and QR payload are unchanged.');
+    }
+
+    public function destroy(Request $request, Link $link): RedirectResponse
+    {
+        abort_unless($link->user_id === $request->user()->id, 403);
+
+        $request->validate([
+            'confirm_slug' => ['required', Rule::in([$link->slug])],
+        ]);
+
+        $logoPath = $link->qr_logo_path;
+        $link->delete();
+
+        if ($logoPath !== null) {
+            Storage::disk('local')->delete($logoPath);
+        }
+
+        return redirect()->route('dashboard')->with('status', 'Short link and QR code deleted. Existing QR scans will no longer resolve.');
     }
 
     /** @return array<int, mixed> */
