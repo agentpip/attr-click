@@ -49,3 +49,13 @@
 **Why:** One shared ability prevents route protection and UI visibility from drifting apart, keeps the implementation native to Laravel, and avoids introducing a heavier RBAC system before there is evidence of more complex policy needs.
 
 **Trade-off:** `is_admin` is intentionally coarse. If attr.click later needs delegated scopes, team workspaces, or per-resource administration, the single-flag model will need to evolve into richer policies or roles.
+
+## 2026-07-25: Public deployment files are configuration-free templates
+
+**Status:** Accepted
+
+**Decision:** Keep `Envoy.blade.php`, deployment docs, and infrastructure templates free of operator-specific hostnames, account names, and absolute paths. Envoy receives `ATTR_CLICK_DEPLOY_HOST` and `ATTR_CLICK_DEPLOY_PATH` only from the operator's local environment and validates both before synchronization.
+
+**Why:** A public repository should publish repeatable deployment behavior without publishing unnecessary infrastructure intelligence or making contributors inherit one operator's target.
+
+**Trade-off:** Deployers must export two explicit local variables before invoking an Envoy story. This is intentional fail-fast friction at the operation boundary, not application runtime configuration.
