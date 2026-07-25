@@ -9,19 +9,20 @@ concurrently because it owns that loopback port with `php artisan serve`.
 
 ## One-time privileged preparation
 
-Run these commands **on `UMacBookPro` as an administrator**, from the deployed
-application checkout. They install and enable the Apache fragments but do not
+Run these commands **on the production host as an administrator**, from the deployed
+application checkout. Set `APP_ROOT` to that host's application path. They install and enable the Apache fragments but do not
 reload Apache yet, so the existing Laravel development server remains live.
 
 ```sh
+APP_ROOT=/srv/attr-click
 sudo install -m 0644 deploy/apache/attr-click-listen.conf /etc/apache2/conf-available/attr-click-listen.conf
 sudo install -m 0644 deploy/apache/attr-click.conf /etc/apache2/sites-available/attr-click.conf
 sudo a2enconf attr-click-listen
 sudo a2ensite attr-click
-sudo chgrp www-data /home/michael/Sites/attr.click/.env
-sudo chmod 640 /home/michael/Sites/attr.click/.env
-sudo setfacl -R -m u:www-data:rwX /home/michael/Sites/attr.click/storage /home/michael/Sites/attr.click/bootstrap/cache
-sudo setfacl -m d:u:www-data:rwx /home/michael/Sites/attr.click/storage /home/michael/Sites/attr.click/bootstrap/cache
+sudo chgrp www-data "$APP_ROOT/.env"
+sudo chmod 640 "$APP_ROOT/.env"
+sudo setfacl -R -m u:www-data:rwX "$APP_ROOT/storage" "$APP_ROOT/bootstrap/cache"
+sudo setfacl -m d:u:www-data:rwx "$APP_ROOT/storage" "$APP_ROOT/bootstrap/cache"
 sudo apache2ctl configtest
 ```
 

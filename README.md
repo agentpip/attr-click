@@ -45,6 +45,8 @@ Production intentionally does not install frontend development dependencies. Env
 For a normal release, run one command:
 
 ```bash
+export ATTR_CLICK_DEPLOY_HOST='deploy-user@your-production-host'
+export ATTR_CLICK_DEPLOY_PATH='/absolute/path/to/application'
 vendor/bin/envoy run deploy
 ```
 
@@ -60,7 +62,7 @@ List the available Envoy recipes with:
 vendor/bin/envoy tasks
 ```
 
-The target is `michael@umacbookpro:/home/michael/Sites/attr.click`. The workflow preserves remote `.env` and `storage/`; production secrets and user-generated files are never copied from the local checkout. Note that Envoy 2.12's `--pretend` mode intentionally prints one task then exits nonzero, so use it only for inspecting an individual task—not as a successful full-story dry run.
+The workflow preserves remote `.env` and `storage/`; production secrets and user-generated files are never copied from the local checkout. Read [deployment configuration](deploy/README.md) before running it. Note that Envoy 2.12's `--pretend` mode intentionally prints one task then exits nonzero, so use it only for inspecting an individual task—not as a successful full-story dry run.
 
 ## Project docs
 
