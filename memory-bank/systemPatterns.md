@@ -19,3 +19,7 @@ Treat destination admission, public redirects, passwordless links, uploaded logo
 ## Admin auth coherence
 
 Admin visibility and admin access share the same server-owned ability. If a route is protected by `can:access-admin`, the creator shell should use that exact ability to decide whether to render admin navigation.
+
+## Public repository operations
+
+Versioned deployment files are portable templates, not operator configuration. They contain no production host, account, or absolute application path; operators provide deployment target and application path as local environment variables, and every deployment story validates both before any synchronization starts.
