@@ -14,7 +14,10 @@
     <footer class="border-t border-zinc-200 py-6 text-xs font-medium text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
         <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
             <p>MIT Licensed <span aria-hidden="true">•</span> Open Source</p>
-            <p class="text-[11px]">Built with Agency Agents</p>
+            <div class="flex items-center gap-4 text-[11px]">
+                <a href="{{ route('help') }}" class="hover:text-zinc-900 dark:hover:text-zinc-100">Help</a>
+                <p>Built with Agency Agents</p>
+            </div>
         </div>
     </footer>
 </x-layout>

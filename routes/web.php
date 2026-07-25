@@ -21,6 +21,7 @@ Route::get('/login/verify/{loginLink}', [MagicLoginController::class, 'verify'])
 Route::get('/invite', [InvitationController::class, 'create'])->name('invite.create');
 Route::post('/invite', [InvitationController::class, 'store'])->middleware('throttle:6,1')->name('invite.register');
 Route::get('/invite/verify/{user}/{invitation}', [InvitationController::class, 'verify'])->middleware('signed')->name('invite.verify');
+Route::view('/help', 'help')->name('help');
 
 Route::middleware('auth')->group(function (): void {
     Route::post('/logout', [MagicLoginController::class, 'destroy'])->name('logout');

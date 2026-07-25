@@ -11,6 +11,10 @@ A self-hosted, invitation-only short-link and QR-code platform for teams that ca
 - Reusable QR appearance templates
 - First-party click events and attribution reporting
 
+## Using attr.click
+
+The public [user guide](https://attr.click/help) explains invitations, short-link creation, QR customization, templates, analytics, and the product's privacy boundaries. It is readable without an account.
+
 ## Local development
 
 ```bash
@@ -60,6 +64,7 @@ The target is `michael@umacbookpro:/home/michael/Sites/attr.click`. The workflow
 
 ## Project docs
 
+- [Public user guide](https://attr.click/help)
 - [Product requirements](docs/PRD.md)
 - [Release plan](docs/RELEASE_PLAN.md)
 - [Architecture](docs/ARCHITECTURE.md)

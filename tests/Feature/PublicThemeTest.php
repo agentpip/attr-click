@@ -6,6 +6,17 @@ use Tests\TestCase;
 
 class PublicThemeTest extends TestCase
 {
+    public function test_help_is_a_publicly_available_user_guide(): void
+    {
+        $this->get(route('help'))
+            ->assertOk()
+            ->assertSee('How attr.click works')
+            ->assertSee('Create a short link')
+            ->assertSee('QR codes and templates')
+            ->assertSee('Privacy by default')
+            ->assertSee('Sign in');
+    }
+
     public function test_homepage_exposes_complete_social_share_metadata_and_open_source_provenance(): void
     {
         $this->get(route('home'))
