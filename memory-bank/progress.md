@@ -22,7 +22,7 @@
 - Production currently runs `php artisan serve` from the enabled `attr-click.service` user unit on loopback port 8092; Caddy proxies `attr.click` to that port.
 - Prepared repository configuration in `deploy/apache/` adds a loopback-only Apache vhost with Laravel's `public/` document root and an explicit rewrite front controller. Candidate syntax validation passed against production Apache 2.4.64.
 - Apache's root-owned system service is the replacement runtime. The user unit is retired only after a successful Apache reload and `/up` health check. Caddy/TLS configuration remains unchanged.
-- Interactive sudo is required to install the Apache fragments, grant `www-data` write access to `storage/` and `bootstrap/cache/`, and reload Apache; noninteractive sudo is unavailable on UMacBookPro.
+- Interactive sudo is required to install the Apache fragments, grant `www-data` write access to `storage/` and `bootstrap/cache/`, and reload Apache; noninteractive sudo is unavailable on the production host.
 
 ## Deferred public-v1 hardening
 
