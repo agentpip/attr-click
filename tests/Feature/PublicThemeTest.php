@@ -17,6 +17,14 @@ class PublicThemeTest extends TestCase
             ->assertSee('Sign in');
     }
 
+    public function test_help_links_to_the_canonical_public_repository(): void
+    {
+        $this->get(route('help'))
+            ->assertOk()
+            ->assertSee('https://github.com/msitarzewski/attr-click', false)
+            ->assertDontSee('https://github.com/agentpip/attr-click', false);
+    }
+
     public function test_homepage_exposes_complete_social_share_metadata_and_open_source_provenance(): void
     {
         $this->get(route('home'))

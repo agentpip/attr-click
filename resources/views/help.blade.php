@@ -56,12 +56,12 @@
                     <li>Reports show referrer hosts, not full referrer URLs, and never expose raw IP addresses.</li>
                     <li>Uploaded QR logos are transformed server-side and kept in private storage.</li>
                 </ul>
-                <p class="mt-4 leading-7">For implementation details, read the <a href="https://github.com/agentpip/attr-click/blob/main/docs/SECURITY_AND_PRIVACY.md" class="font-semibold text-cyan-800 underline decoration-cyan-500/50 underline-offset-4 hover:text-cyan-900 dark:text-cyan-200 dark:hover:text-cyan-100">security and privacy documentation</a>.</p>
+                <p class="mt-4 leading-7">For implementation details, read the <a href="https://github.com/msitarzewski/attr-click/blob/main/docs/SECURITY_AND_PRIVACY.md" class="font-semibold text-cyan-800 underline decoration-cyan-500/50 underline-offset-4 hover:text-cyan-900 dark:text-cyan-200 dark:hover:text-cyan-100">security and privacy documentation</a>.</p>
             </section>
 
             <section id="support" class="scroll-mt-8">
                 <h2 class="text-2xl font-bold text-zinc-950 dark:text-zinc-100">Need more help?</h2>
-                <p class="mt-3 leading-7">attr.click is MIT licensed and open source. Browse the <a href="https://github.com/agentpip/attr-click" class="font-semibold text-cyan-800 underline decoration-cyan-500/50 underline-offset-4 hover:text-cyan-900 dark:text-cyan-200 dark:hover:text-cyan-100">source on GitHub</a> for deployment notes, architecture, and contribution guidance.</p>
+                <p class="mt-3 leading-7">attr.click is MIT licensed and open source. Browse the <a href="https://github.com/msitarzewski/attr-click" class="font-semibold text-cyan-800 underline decoration-cyan-500/50 underline-offset-4 hover:text-cyan-900 dark:text-cyan-200 dark:hover:text-cyan-100">source on GitHub</a> for deployment notes, architecture, and contribution guidance.</p>
             </section>
         </div>
     </article>
