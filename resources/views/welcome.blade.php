@@ -13,7 +13,11 @@
 
     <footer class="border-t border-zinc-200 py-6 text-xs font-medium text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
         <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-            <p>MIT Licensed <span aria-hidden="true">•</span> Open Source</p>
+            <div class="flex items-center gap-2">
+                <a href="https://github.com/msitarzewski/attr-click" class="hover:text-zinc-900 dark:hover:text-zinc-100">Open source</a>
+                <span aria-hidden="true">•</span>
+                <a href="https://github.com/msitarzewski/attr-click/blob/main/LICENSE" class="hover:text-zinc-900 dark:hover:text-zinc-100">MIT License</a>
+            </div>
             <div class="flex items-center gap-4 text-[11px]">
                 <a href="{{ route('help') }}" class="hover:text-zinc-900 dark:hover:text-zinc-100">Help</a>
                 <p>Built with Agency Agents</p>

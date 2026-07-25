@@ -61,7 +61,7 @@
 
             <section id="support" class="scroll-mt-8">
                 <h2 class="text-2xl font-bold text-zinc-950 dark:text-zinc-100">Need more help?</h2>
-                <p class="mt-3 leading-7">attr.click is MIT licensed and open source. Browse the <a href="https://github.com/msitarzewski/attr-click" class="font-semibold text-cyan-800 underline decoration-cyan-500/50 underline-offset-4 hover:text-cyan-900 dark:text-cyan-200 dark:hover:text-cyan-100">source on GitHub</a> for deployment notes, architecture, and contribution guidance.</p>
+                <p class="mt-3 leading-7">attr.click is open source under the <a href="https://github.com/msitarzewski/attr-click/blob/main/LICENSE" class="font-semibold text-cyan-800 underline decoration-cyan-500/50 underline-offset-4 hover:text-cyan-900 dark:text-cyan-200 dark:hover:text-cyan-100">MIT License</a>. Browse the <a href="https://github.com/msitarzewski/attr-click" class="font-semibold text-cyan-800 underline decoration-cyan-500/50 underline-offset-4 hover:text-cyan-900 dark:text-cyan-200 dark:hover:text-cyan-100">source on GitHub</a> for deployment notes, architecture, and contribution guidance.</p>
             </section>
         </div>
     </article>

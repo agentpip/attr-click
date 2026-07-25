@@ -1,9 +1,14 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "msitarzewski/attr-click",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "Invitation-only short links, QR codes, and first-party attribution.",
+    "keywords": ["attribution", "laravel", "qr-code", "short-links"],
+    "homepage": "https://attr.click",
+    "support": {
+        "issues": "https://github.com/msitarzewski/attr-click/issues",
+        "source": "https://github.com/msitarzewski/attr-click"
+    },
     "license": "MIT",
     "require": {
         "php": "^8.3",

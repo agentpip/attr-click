@@ -58,7 +58,7 @@
 
 ## Phase 4 — Operational hardening and public v1
 
-**Outcome:** attr.click is safe to run on UMBP and useful to outside contributors.
+**Outcome:** attr.click is safe to operate in production and useful to outside contributors.
 
 - MySQL migration rehearsal against a fresh instance and production-like dataset.
 - Caching for redirect lookup, queue worker/scheduler, structured logging, health endpoint, backup/restore runbook.
