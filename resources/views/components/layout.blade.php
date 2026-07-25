@@ -77,6 +77,7 @@
             <nav class="mb-16 flex items-center justify-between">
                 <a href="{{ route('home') }}" class="text-xl font-black tracking-tight">attr<span class="text-cyan-400">.</span>click</a>
                 <div class="flex items-center gap-1">
+                    <flux:button :href="route('help')" variant="ghost">Help</flux:button>
                     <x-appearance-toggle />
                     <flux:button :href="route('login')" variant="ghost">Sign in</flux:button>
                     <flux:button :href="route('invite.create')" variant="outline">Use an invitation</flux:button>
