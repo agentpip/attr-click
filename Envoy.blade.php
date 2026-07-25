@@ -1,13 +1,19 @@
 @servers([
     'local' => '127.0.0.1',
-    'production' => 'michael@umacbookpro',
+    'production' => getenv('ATTR_CLICK_DEPLOY_HOST') ?: 'unconfigured-deploy-host',
 ])
 
 @setup
     $repository = getcwd();
-    $app = '/home/michael/Sites/attr.click';
-    $host = 'michael@umacbookpro';
+    $app = getenv('ATTR_CLICK_DEPLOY_PATH') ?: '';
+    $host = getenv('ATTR_CLICK_DEPLOY_HOST') ?: '';
 @endsetup
+
+@task('validate_deploy_configuration', ['on' => 'local'])
+    set -eu
+    test -n '{{ $host }}' || { echo 'ATTR_CLICK_DEPLOY_HOST must be set' >&2; exit 1; }
+    test -n '{{ $app }}' || { echo 'ATTR_CLICK_DEPLOY_PATH must be set' >&2; exit 1; }
+@endtask
 
 @task('build', ['on' => 'local'])
     set -eu
@@ -69,6 +75,7 @@
 @endtask
 
 @story('deploy')
+    validate_deploy_configuration
     build
     sync_assets
     sync_application
@@ -77,6 +84,7 @@
 @endstory
 
 @story('deploy_qr_lifecycle')
+    validate_deploy_configuration
     build
     sync_assets
     sync_application
