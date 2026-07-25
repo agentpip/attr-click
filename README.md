@@ -1,6 +1,6 @@
 # attr.click
 
-A self-hosted, invitation-only short-link and QR-code platform for teams that care about a clean brand surface, durable attribution, and owning their data.
+A self-hosted, invitation-only short-link and QR-code platform for teams that care about a clean brand surface, durable attribution, and owning their data. [Browse the source on GitHub](https://github.com/msitarzewski/attr-click).
 
 ## What it does
 
@@ -26,7 +26,7 @@ npm run dev
 php artisan serve
 ```
 
-The generated `.env` uses SQLite (`database/database.sqlite`). For production, set `DB_CONNECTION=mysql` and the `DB_*` values for the UMBP MySQL instance, then run `php artisan migrate --force`.
+The generated `.env` uses SQLite (`database/database.sqlite`). For production, set `DB_CONNECTION=mysql` and the deployment's `DB_*` values, then run `php artisan migrate --force`.
 
 ## Flux UI
 
@@ -40,7 +40,7 @@ The activation credential belongs in the deployment/CI secret store, never in gi
 
 ## Production deployment
 
-Production intentionally does not install frontend development dependencies. Envoy builds Vite assets locally on the machine invoking deployment, uploads those assets before the application source, refreshes Composer dependencies and Laravel caches, restarts the user service, and checks `/up`.
+Production intentionally does not install frontend development dependencies. Envoy builds Vite assets locally on the machine invoking deployment, uploads those assets before the application source, refreshes Composer dependencies and Laravel caches, then checks `/up`.
 
 For a normal release, run one command:
 
@@ -76,4 +76,4 @@ The workflow preserves remote `.env` and `storage/`; production secrets and user
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE) or [view it on GitHub](https://github.com/msitarzewski/attr-click/blob/main/LICENSE).

@@ -25,6 +25,16 @@ class PublicThemeTest extends TestCase
             ->assertDontSee('https://github.com/agentpip/attr-click', false);
     }
 
+    public function test_public_open_source_surfaces_link_to_the_canonical_repository_and_license(): void
+    {
+        foreach ([route('home'), route('help')] as $url) {
+            $this->get($url)
+                ->assertOk()
+                ->assertSee('https://github.com/msitarzewski/attr-click', false)
+                ->assertSee('https://github.com/msitarzewski/attr-click/blob/main/LICENSE', false);
+        }
+    }
+
     public function test_homepage_exposes_complete_social_share_metadata_and_open_source_provenance(): void
     {
         $this->get(route('home'))
@@ -37,8 +47,8 @@ class PublicThemeTest extends TestCase
             ->assertSee('<meta property="og:title" content="attr.click — Open-source short links and QR codes">', false)
             ->assertSee('<meta property="og:image" content="'.asset('images/attr-click-share.png').'">', false)
             ->assertSee('<meta name="twitter:card" content="summary_large_image">', false)
-            ->assertSee('MIT Licensed')
-            ->assertSee('Open Source')
+            ->assertSee('MIT License')
+            ->assertSee('Open source')
             ->assertSee('Built with Agency Agents');
     }
 
